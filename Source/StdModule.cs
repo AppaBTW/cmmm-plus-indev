@@ -11,7 +11,7 @@ public class Mod : IMod
     public string DisplayName => "CMMM+";
     public string Author => "AppaBTW";
     public string Version => "1.3.0";
-    public ILevelFormat LevelFormat => null;
+    public ILevelFormat LevelFormat => MP1;
     public string Description => "Ports the cells from cmmm+";
     public string[] Dependencies => Array.Empty<string>();
 
