@@ -12,9 +12,7 @@ namespace Indev2
         public override int CellType => 9;
         public override string CellSpriteIndex => "Freeze";
 
-        public FreezeProcessor(ICellGrid cellGrid) : base(cellGrid)
-        {
-        }
+        public FreezeProcessor(ICellGrid cellGrid) : base(cellGrid) { }
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
         {
@@ -35,7 +33,6 @@ namespace Indev2
             if (!_cellGrid.PushCell(targetCell.Value, direction, force))
                 return false;
 
-
             _cellGrid.MoveCell(cell, target);
             return true;
         }
@@ -45,15 +42,9 @@ namespace Indev2
             return true;
         }
 
-        public override void OnCellInit(ref BasicCell cell)
-        {
-            //do nothing
-        }
+        public override void OnCellInit(ref BasicCell cell) { }
 
-        public override void Clear()
-        {
-            //do nothing
-        }
+        public override void Clear() { }
 
         public override void Step(CancellationToken ct)
         {

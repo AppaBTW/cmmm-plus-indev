@@ -6,9 +6,7 @@ namespace Indev2
 {
     public class GlobalConverterCellProcessor : SteppedCellProcessor
     {
-        public GlobalConverterCellProcessor(ICellGrid cellGrid) : base(cellGrid)
-        {
-        }
+        public GlobalConverterCellProcessor(ICellGrid cellGrid) : base(cellGrid) { }
 
         public override string Name => "Global Converter";
         public override int CellType => 14;
@@ -19,9 +17,7 @@ namespace Indev2
             return false;
         }
 
-        public override void OnCellInit(ref BasicCell cell)
-        {
-        }
+        public override void OnCellInit(ref BasicCell cell) { }
 
         public override bool OnReplaced(BasicCell basicCell, BasicCell replacingCell)
         {
@@ -52,10 +48,6 @@ namespace Indev2
             }
         }
 
-
-
-        public override void Clear()
-        {
-        }
+        public override void Clear() { }
     }
 }

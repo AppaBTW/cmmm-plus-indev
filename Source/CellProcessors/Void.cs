@@ -10,10 +10,7 @@ namespace Indev2
         public override int CellType => 20;
         public override string CellSpriteIndex => "Void";
 
-
-        public VoidProcessor(ICellGrid cellGrid) : base(cellGrid)
-        {
-        }
+        public VoidProcessor(ICellGrid cellGrid) : base(cellGrid) { }
 
         public override bool OnReplaced(BasicCell basicCell, BasicCell replacingCell)
         {
@@ -30,9 +27,6 @@ namespace Indev2
             cell.SpriteVariant = 1;
         }
 
-        public override void Clear()
-        {
-            //do nothing
-        }
+        public override void Clear() { }
     }
 }

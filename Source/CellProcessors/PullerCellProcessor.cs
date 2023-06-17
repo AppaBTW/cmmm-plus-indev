@@ -1,27 +1,31 @@
+using System.Threading;
 using Modding;
 using Modding.PublicInterfaces.Cells;
-using System.Threading;
 
 namespace Indev2
 {
-    public class NudgeCellProcessor : SteppedCellProcessor
+    public class PullerCellProcessor : SteppedCellProcessor
     {
+        public PullerCellProcessor(ICellGrid cellGrid) : base(cellGrid)
+        {
+        }
 
-        public NudgeCellProcessor(ICellGrid cellGrid) : base(cellGrid) { }
+        public override string Name => "Puller";
+        public override int CellType => 21;
+        public override string CellSpriteIndex => "Puller";
 
-        public override string Name => "Nudge";
-        public override int CellType => 15;
-        public override string CellSpriteIndex => "Nudge";
+        public override bool OnReplaced(BasicCell basicCell, BasicCell replacingCell)
+        {
+            return true;
+        }
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
         {
-            if (cell.SpriteVariant == 1)
-            {
+            if(!cell.Frozen)
                 if (direction == cell.Transform.Direction)
                     force++;
                 else if (direction.Axis == cell.Transform.Direction.Axis)
                     force--;
-            }
 
             if (force <= 0)
                 return false;
@@ -30,30 +34,31 @@ namespace Indev2
             if (!_cellGrid.InBounds(target))
                 return false;
             var targetCell = _cellGrid.GetCell(target);
+
+
+            BasicCell useCell;
             if (targetCell is null)
             {
-                cell.SpriteVariant = 1;
-                _cellGrid.MoveCell(cell, target);
+                useCell = cell;
+
+                _cellGrid.MoveCell(useCell, target);
                 return true;
             }
 
             if (!_cellGrid.PushCell(targetCell.Value, direction, force))
                 return false;
 
-            cell.SpriteVariant = 1;
-            _cellGrid.MoveCell(cell, target);
 
+            useCell = cell;
+
+            _cellGrid.MoveCell(useCell, target);
             return true;
         }
-        public override bool OnReplaced(BasicCell basicCell, BasicCell replacingCell)
-        {
-            return true;
-        }
+
         public override void OnCellInit(ref BasicCell cell)
         {
-            cell.SpriteVariant = 0;
+
         }
-        public override void Clear() { }
 
         public override void Step(CancellationToken ct)
         {
@@ -61,12 +66,22 @@ namespace Indev2
             {
                 if (ct.IsCancellationRequested)
                     return;
-                if (cell.SpriteVariant == 1)
-                {
-                    _cellGrid.PushCell(cell, cell.Transform.Direction, 0);
-                }
+                var targetPos = cell.Transform.Position - cell.Transform.Direction.AsVector2Int;
+                var targetCell = _cellGrid.GetCell(targetPos);
+
+                _cellGrid.PushCell(cell, cell.Transform.Direction, 0);
+
+                if (targetCell != null)
+                    _cellGrid.PushCell((BasicCell)targetCell, cell.Transform.Direction, 0);
+                //_cellGrid.RemoveCell((BasicCell)targetCell);
+
 
             }
+        }
+
+        public override void Clear()
+        {
+
         }
     }
 }

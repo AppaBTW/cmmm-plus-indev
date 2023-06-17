@@ -60,7 +60,6 @@ namespace Indev2
 
                 var targetCell = _cellGrid.GetCell(targetPos);
 
-
                 if (referenceCell is not null)
                 {
                     if (targetCell != null)

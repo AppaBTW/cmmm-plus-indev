@@ -34,6 +34,7 @@ public class Mod : IMod
         yield return new RandomRotatorProcessor(cellGrid);
         yield return new FixedRotatorProcessor(cellGrid);
         yield return new MoverCellProcessor(cellGrid);
+        yield return new PullerCellProcessor(cellGrid);
         yield return new NudgeCellProcessor(cellGrid);
         //yield return new FallCellProcessor(cellGrid);
         yield return new FlipperProcessor(cellGrid);
