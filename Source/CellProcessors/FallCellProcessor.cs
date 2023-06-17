@@ -36,23 +36,18 @@ namespace Indev2
                 if (ct.IsCancellationRequested)
                     return;
 
-                // Save the previous transform to be used when the cell moves
-                var prevTransform = cell.Transform;
-
-                // Check the cell in front of the fall cell (use the fall cells direction)
                 var targetPos = cell.Transform.Position + cell.Transform.Direction.AsVector2Int;
+                var count = 0;
                 while (_cellGrid.InBounds(targetPos) && _cellGrid.GetCell(targetPos) == null)
                 {
-                    // Update the target position for the next iteration
-                    targetPos += cell.Transform.Direction.AsVector2Int;
+                    targetPos = cell.Transform.Position + (cell.Transform.Direction.AsVector2Int * count);
+                    count++;
                 }
-
-                // Store the position where the fall cell stops
-                var finalPos = targetPos - cell.Transform.Direction.AsVector2Int;
-
-                // Move the cell to the final position
-                _cellGrid.RemoveCell(cell.Transform.Position);
-                _cellGrid.AddCell(finalPos, cell.Transform.Direction, CellType, prevTransform);
+                var targetCell = _cellGrid.GetCell(targetPos);
+                if (targetCell != null)
+                    continue;
+                _cellGrid.AddCell(targetPos, cell.Transform.Direction, cell.Instance.Type, cell.Transform);
+                _cellGrid.RemoveCell(cell);
             }
         }
         public override void Clear()

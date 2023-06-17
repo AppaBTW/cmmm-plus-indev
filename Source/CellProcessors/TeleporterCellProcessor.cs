@@ -6,12 +6,10 @@ namespace Indev2
 {
     public class TeleporterCellProcessor : SteppedCellProcessor
     {
-        public TeleporterCellProcessor(ICellGrid cellGrid) : base(cellGrid)
-        {
-        }
+        public TeleporterCellProcessor(ICellGrid cellGrid) : base(cellGrid) { }
 
         public override string Name => "Teleporter";
-        public override int CellType => 17;
+        public override int CellType => 19;
         public override string CellSpriteIndex => "Teleporter";
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
@@ -33,14 +31,11 @@ namespace Indev2
             if (!_cellGrid.PushCell(targetCell.Value, direction, force))
                 return false;
 
-
             _cellGrid.MoveCell(cell, target);
             return true;
         }
 
-        public override void OnCellInit(ref BasicCell cell)
-        {
-        }
+        public override void OnCellInit(ref BasicCell cell) { }
 
         public override bool OnReplaced(BasicCell basicCell, BasicCell replacingCell)
         {
@@ -61,25 +56,21 @@ namespace Indev2
 
                 var targetCell = _cellGrid.GetCell(targetPos);
 
-                if (targetCell is null)
-                    continue;
-
                 var referencePos = cell.Transform.Position - cell.Transform.Direction.AsVector2Int;
                 var referenceCell = _cellGrid.GetCell(referencePos);
 
-                if (targetCell is not null && referenceCell is not null && (targetCell.Value.Instance.Type != referenceCell.Value.Instance.Type || targetCell.Value.Transform.Direction != referenceCell.Value.Transform.Direction))
+                if (referenceCell is not null)
                 {
+                    if (targetCell != null)
+                        if (!_cellGrid.PushCell(targetCell.Value, cell.Transform.Direction, 1))
+                            continue;
                     _cellGrid.AddCell(targetPos, referenceCell.Value.Transform.Direction, (int)(uint)referenceCell.Value.Instance.Type, cell.Transform);
+                    _cellGrid.RemoveCell((BasicCell)referenceCell);
                 }
-                
 
             }
         }
 
-
-
-        public override void Clear()
-        {
-        }
+        public override void Clear() { }
     }
 }

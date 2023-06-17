@@ -70,6 +70,7 @@
     <Compile Include="Source\CellProcessors\FixedRotatorProcessor.cs" /> 
     <Compile Include="Source\CellProcessors\GlobalConverterCellProcessor.cs" />
     <Compile Include="Source\CellProcessors\RandomRotatorProcessor.cs" />
+    <Compile Include="Source\CellProcessors\TeleporterCellProcessor.cs" />
     
     <Compile Include="Source\mp1.cs" />
     <Compile Include="Source\StdModule.cs" />

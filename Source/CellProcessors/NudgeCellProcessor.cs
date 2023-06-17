@@ -19,10 +19,13 @@ namespace Indev2
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
         {
-            if (direction == cell.Transform.Direction)
-                force++;
-            else if (direction.Axis == cell.Transform.Direction.Axis)
-                force--;
+            if (cell.SpriteVariant == 1)
+            {
+                if (direction == cell.Transform.Direction)
+                    force++;
+                else if (direction.Axis == cell.Transform.Direction.Axis)
+                    force--;
+            }
 
             if (force <= 0)
                 return false;

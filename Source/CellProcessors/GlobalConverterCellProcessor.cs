@@ -44,7 +44,8 @@ namespace Indev2
 
                     foreach (var c in cellsToConvert)
                     {
-                        _cellGrid.AddCell(c.Transform.Position, referenceCell.Value.Transform.Direction, (int)(uint)referenceCell.Value.Instance.Type, null);
+                        var oldTransform = c.Transform;
+                        _cellGrid.AddCell(c.Transform.Position, referenceCell.Value.Transform.Direction, (int)(uint)referenceCell.Value.Instance.Type, oldTransform);
                     }
                 }
             }
