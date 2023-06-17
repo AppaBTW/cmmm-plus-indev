@@ -37,7 +37,8 @@ namespace Indev2
                 var targetCell = _cellGrid.GetCell(targetPos);
                 var referencePos = cell.Transform.Position - cell.Transform.Direction.AsVector2Int;
                 var referenceCell = _cellGrid.GetCell(referencePos);
-
+                if (referenceCell.Value.Instance.Type == 20)
+                    return;
                 if (targetCell is not null && referenceCell is not null && (targetCell.Value.Instance.Type != referenceCell.Value.Instance.Type || targetCell.Value.Transform.Direction != referenceCell.Value.Transform.Direction))
                 {
                     var cellsToConvert = _cellGrid.GetCells().Where(a => a.Instance.Type == targetCell.Value.Instance.Type).ToList();

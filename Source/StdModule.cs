@@ -39,6 +39,7 @@ public class Mod : IMod
         yield return new FlipperProcessor(cellGrid);
         yield return new TeleporterCellProcessor(cellGrid);
         yield return new WallCellProcessor(cellGrid);
+        yield return new VoidProcessor(cellGrid);
         yield return new TrashCellProcessor(cellGrid);
         yield return new EnemyCellProcessor(cellGrid);
 

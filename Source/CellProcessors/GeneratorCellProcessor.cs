@@ -78,13 +78,15 @@ namespace Indev2
                 if (copyCell is null)
                     continue;
 
+                if (copyCell.Value.Instance.Type == 20)
+                    return;
                 var targetPos = generatorCell.Transform.Position + generatorCell.Transform.Direction.AsVector2Int;
 
                 if (!_cellGrid.InBounds(targetPos))
                     continue;
 
                 var targetCell = _cellGrid.GetCell(targetPos);
-                if(targetCell != null)
+                if(targetCell != null && targetCell.Value.Instance.Type != 20)
                     if (!_cellGrid.PushCell(targetCell.Value, generatorCell.Transform.Direction, 1))
                         continue;
 

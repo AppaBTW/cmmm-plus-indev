@@ -65,7 +65,8 @@ namespace Indev2
                     var targetCell = _cellGrid.GetCell(target);
                     if (targetCell is null)
                         continue;
-
+                    if (targetCell.Value.Instance.Type == 20)
+                        return;
                     var basicCell = targetCell.Value;
                     basicCell.Frozen = true;
 

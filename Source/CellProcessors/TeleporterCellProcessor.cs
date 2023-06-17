@@ -48,6 +48,10 @@ namespace Indev2
             {
                 if (ct.IsCancellationRequested)
                     return;
+                var referencePos = cell.Transform.Position - cell.Transform.Direction.AsVector2Int;
+                var referenceCell = _cellGrid.GetCell(referencePos);
+                if (referenceCell.Value.Instance.Type == 20)
+                    return;
 
                 var targetPos = cell.Transform.Position + cell.Transform.Direction.AsVector2Int;
 
@@ -56,8 +60,6 @@ namespace Indev2
 
                 var targetCell = _cellGrid.GetCell(targetPos);
 
-                var referencePos = cell.Transform.Position - cell.Transform.Direction.AsVector2Int;
-                var referenceCell = _cellGrid.GetCell(referencePos);
 
                 if (referenceCell is not null)
                 {
