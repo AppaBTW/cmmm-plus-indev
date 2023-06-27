@@ -4,11 +4,11 @@ using Modding.PublicInterfaces.Cells;
 
 namespace Indev2
 {
-    public abstract class RotatorProcessor : TickedCellStepper
+    public abstract class SemiRotatorProcessor : TickedCellStepper
     {
         public abstract int RotationAmount { get; }
 
-        protected RotatorProcessor(ICellGrid cellGrid) : base(cellGrid)
+        protected SemiRotatorProcessor(ICellGrid cellGrid) : base(cellGrid)
         {
         }
 
@@ -20,6 +20,8 @@ namespace Indev2
                     return;
                 foreach (var direction in Direction.All)
                 {
+                    if (direction.Axis != cell.Transform.Direction.Axis)
+                        continue;
                     var target = cell.Transform.Position + direction.AsVector2Int;
                     var targetCell = _cellGrid.GetCell(target);
 

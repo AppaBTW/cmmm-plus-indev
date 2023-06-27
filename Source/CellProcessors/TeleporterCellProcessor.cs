@@ -9,7 +9,7 @@ namespace Indev2
         public TeleporterCellProcessor(ICellGrid cellGrid) : base(cellGrid) { }
 
         public override string Name => "Teleporter";
-        public override int CellType => 19;
+        public override int CellType => 17;
         public override string CellSpriteIndex => "Teleporter";
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
@@ -50,25 +50,63 @@ namespace Indev2
                     return;
                 var referencePos = cell.Transform.Position - cell.Transform.Direction.AsVector2Int;
                 var referenceCell = _cellGrid.GetCell(referencePos);
-                if (referenceCell.Value.Instance.Type == 20)
-                    return;
-
                 var targetPos = cell.Transform.Position + cell.Transform.Direction.AsVector2Int;
+                var targetCell = _cellGrid.GetCell(targetPos);
 
+                //  This does all the checks for stuff
+                if (referenceCell is null)
+                    continue;
+                if (referenceCell.Value.Instance.Type == 20)
+                    continue;
+                if (referenceCell.Value.Instance.Type == 19)
+                    continue;
                 if (!_cellGrid.InBounds(targetPos))
                     continue;
 
-                var targetCell = _cellGrid.GetCell(targetPos);
-
-                if (referenceCell is not null)
+                BasicCell useCell = referenceCell.Value;
+                useCell.Transform = useCell.Transform.SetPosition(targetPos);
+                useCell.Transform = useCell.Transform.SetDirection(referenceCell.Value.Transform.Direction);
+                useCell.PreviousTransform = useCell.PreviousTransform.SetPosition(referenceCell.Value.Transform.Position);
+                if (targetCell is not null)
                 {
-                    if (targetCell != null)
+                    if (targetCell.Value.Instance.Type == 19)
+                    {
+                    check:
+                        {
+                            if (targetCell is not null)
+                            {
+                                if (targetCell.Value.Instance.Type == 19 && targetCell.Value.Transform.Direction == cell.Transform.Direction)
+                                {
+                                    targetPos += cell.Transform.Direction.AsVector2Int;
+                                    targetCell = _cellGrid.GetCell(targetPos);
+                                    goto check;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        targetCell = _cellGrid.GetCell(targetPos);
                         if (!_cellGrid.PushCell(targetCell.Value, cell.Transform.Direction, 1))
+                        {
                             continue;
-                    _cellGrid.AddCell(targetPos, referenceCell.Value.Transform.Direction, (int)(uint)referenceCell.Value.Instance.Type, cell.Transform);
-                    _cellGrid.RemoveCell((BasicCell)referenceCell);
+                        }
+                    }
+
                 }
 
+                if (targetCell is not null)
+                {
+                    targetCell = _cellGrid.GetCell(targetPos);
+                    if (!_cellGrid.PushCell(targetCell.Value, cell.Transform.Direction, 1))
+                    {
+                        continue;
+                    }
+                }
+                useCell.Transform = useCell.Transform.SetPosition(targetPos);
+
+                _cellGrid.RemoveCell(referenceCell.Value);
+                _cellGrid.AddCell(useCell);
             }
         }
 

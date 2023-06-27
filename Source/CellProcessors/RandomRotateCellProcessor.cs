@@ -1,16 +1,22 @@
-using System.Threading;
 using Modding;
 using Modding.PublicInterfaces.Cells;
+using System.Threading;
+using UnityEngine;
 
 namespace Indev2
 {
-    public abstract class RotatorProcessor : TickedCellStepper
-    {
-        public abstract int RotationAmount { get; }
 
-        protected RotatorProcessor(ICellGrid cellGrid) : base(cellGrid)
+    public class RandomRotateCellProcessor : RotatorProcessor
+    {
+        public RandomRotateCellProcessor(ICellGrid cellGrid) : base(cellGrid)
         {
         }
+
+        public override string Name => "Random Rotator";
+        public override int CellType => 23;
+        public override string CellSpriteIndex => "RandomRotator";
+
+        public override int RotationAmount => throw new System.NotImplementedException();
 
         public override void Step(CancellationToken ct)
         {
@@ -27,23 +33,21 @@ namespace Indev2
                         continue;
                     if (targetCell.Value.Instance.Type == 20)
                         continue;
-                    /*
-                    if (targetCell.Value.Instance.Type == 26 | targetCell.Value.Instance.Type == 2 | targetCell.Value.Instance.Type == 22 | targetCell.Value.Instance.Type == 23 | targetCell.Value.Instance.Type == 24 | targetCell.Value.Instance.Type == 30 | targetCell.Value.Instance.Type == 32)
+                    int rotationAmount = Random.Range(333, 335);
+
+                    if (rotationAmount == 333)
                     {
-                        BasicCell useCell;
-                        useCell = (BasicCell)targetCell;
-                        _cellGrid.RemoveCell(useCell);
-                        useCell.Transform = useCell.Transform.Rotate(RotationAmount);
-                        _cellGrid.AddCell(useCell);
-                        continue;
+                        rotationAmount = 1;
+                    }
+                    else if (rotationAmount == 334)
+                    {
+                        rotationAmount = 3;
                     }
 
-                    _cellGrid.RotateCell(targetCell.Value, targetCell.Value.Transform.Direction.Rotate(RotationAmount));
-                    */
                     BasicCell useCell;
                     useCell = (BasicCell)targetCell;
                     _cellGrid.RemoveCell(useCell);
-                    useCell.Transform = useCell.Transform.Rotate(RotationAmount);
+                    useCell.Transform = useCell.Transform.Rotate(rotationAmount);
                     _cellGrid.AddCell(useCell);
                     continue;
                 }
@@ -83,6 +87,14 @@ namespace Indev2
 
             _cellGrid.MoveCell(cell, target);
             return true;
+        }
+
+        public override void OnCellInit(ref BasicCell cell)
+        {
+        }
+
+        public override void Clear()
+        {
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54B1993F-0A8F-4D23-8E21-AAF20F5FA7A5}</ProjectGuid>
+    <ProjectGuid>{1B26AD0C-1699-4B60-AEDC-AA22D6ECFB38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IndevModdingAPI</RootNamespace>
@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <LangVersion>9</LangVersion>
-  </PropertyGroup>
+  </PropertyGroup> 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -22,75 +22,47 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="IndevModdingInterface">
-          <HintPath>Lib\IndevModdingInterface.dll</HintPath>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Xml" />
-        <Reference Include="UnityEngine">
-          <HintPath>Lib\UnityEngine.dll</HintPath>
-        </Reference>
-       <!--<Reference Include="UnityEngine.CoreModule">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <!--<Reference Include="UnityEngine.CoreModule">
           <HintPath>Lib\UnityEngine.CoreModule.dll</HintPath>
         </Reference>-->
-        <Reference Include="UnityEngine.SharedInternalsModule">
-          <HintPath>Lib\UnityEngine.SharedInternalsModule.dll</HintPath>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>Lib\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\CellProcessors\BasicCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\CCWRotateProcessor.cs" />
-    <Compile Include="Source\CellProcessors\CWRotateProcessor.cs" />
-    <Compile Include="Source\CellProcessors\EnemyProcessor.cs" />
-    <Compile Include="Source\CellProcessors\DirectionalProcessor.cs" />
-    <Compile Include="Source\CellProcessors\GeneratorCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\ConverterCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\MoverCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\RotatorProcessor.cs" />
-    <Compile Include="Source\CellProcessors\SlideCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\TrashCell.cs" />
-    <Compile Include="Source\CellProcessors\WallCell.cs" />
-    <Compile Include="Source\CellProcessors\FallCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\NudgeCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\FreezeProcessor.cs" />
-    <Compile Include="Source\CellProcessors\FlipperProcessor.cs" />   
-    <Compile Include="Source\CellProcessors\FixedRotatorProcessor.cs" /> 
-    <Compile Include="Source\CellProcessors\GlobalConverterCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\RandomRotatorProcessor.cs" />
-    <Compile Include="Source\CellProcessors\TeleporterCellProcessor.cs" />
-    <Compile Include="Source\CellProcessors\Void.cs" />
-    <Compile Include="Source\CellProcessors\PullerCellProcessor.cs" />
-    
-    <Compile Include="Source\mp1.cs" />
+    <Compile Include="Source\CellProcessors\*.cs" />
+    <Compile Include="Source\LegacyFormatV3.cs" />
     <Compile Include="Source\StdModule.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="Lib\IndevModdingInterface.dll" />
-      <Content Include="Lib\UnityEngine.CoreModule.dll" />
-      <Content Include="Lib\UnityEngine.dll" />
-      <Content Include="Lib\UnityEngine.SharedInternalsModule.dll" />
-      <Content Include="README.md" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
     </Target>
     <Target Name="AfterBuild">
     </Target>
     -->
-
 </Project>
+

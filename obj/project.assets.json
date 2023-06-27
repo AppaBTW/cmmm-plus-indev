@@ -1,0 +1,131 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.8": {
+      "Indev.NET/9.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        },
+        "runtime": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win": {
+      "Indev.NET/9.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        },
+        "runtime": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win-x64": {
+      "Indev.NET/9.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        },
+        "runtime": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win-x86": {
+      "Indev.NET/9.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        },
+        "runtime": {
+          "lib/net4.8/IndevModdingInterface.dll": {},
+          "lib/net4.8/UnityEngine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Indev.NET/9.0.6": {
+      "sha512": "Azxm22ULG6dx6a3rUJelI8qpRio0LgLnz+Av7eVAAR4WhuNOCAc/Fr6HV7CrDLIKhxbLUm13C5WE7JseXcFyDQ==",
+      "type": "package",
+      "path": "indev.net/9.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "indev.net.9.0.6.nupkg.sha512",
+        "indev.net.nuspec",
+        "lib/net4.8/IndevModdingInterface.dll",
+        "lib/net4.8/IndevModdingInterface.pdb",
+        "lib/net4.8/UnityEngine.dll",
+        "lib/net4.8/UnityEngine.pdb"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.8": [
+      "Indev.NET >= 9.0.6"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\henri\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\henri\\OneDrive\\Documents\\GitHub\\Too many varients\\TMV.csproj",
+      "projectName": "TMV",
+      "projectPath": "C:\\Users\\henri\\OneDrive\\Documents\\GitHub\\Too many varients\\TMV.csproj",
+      "packagesPath": "C:\\Users\\henri\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\henri\\OneDrive\\Documents\\GitHub\\Too many varients\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\henri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net48"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net48": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net48": {
+        "dependencies": {
+          "Indev.NET": {
+            "target": "Package",
+            "version": "[9.0.6, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

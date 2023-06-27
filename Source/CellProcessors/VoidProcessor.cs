@@ -1,10 +1,10 @@
-using Modding;
+﻿using Modding;
 using Modding.PublicInterfaces.Cells;
-
+using System.Threading;
 namespace Indev2
 {
     [LockRotation]
-    public class VoidProcessor : CellProcessor
+    public class VoidProcessor : SteppedCellProcessor
     {
         public override string Name => "Void";
         public override int CellType => 20;
@@ -22,6 +22,15 @@ namespace Indev2
             return false;
         }
 
+        public override void Step(CancellationToken ct)
+        {
+            foreach (var cell in GetOrderedCellEnumerable())
+            {
+                BasicCell useCell = cell;
+                useCell.SpriteVariant = 1;
+                _cellGrid.AddCell(useCell);
+            }
+        }
         public override void OnCellInit(ref BasicCell cell)
         {
             cell.SpriteVariant = 1;

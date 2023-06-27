@@ -1,12 +1,12 @@
-C:\Users\henri\Downloads\CMMM+ Indev\obj\Debug\cmmm+ Indev.csproj.AssemblyReference.cache
-C:\Users\henri\Downloads\CMMM+ Indev\obj\Debug\cmmm+ Indev.csproj.CoreCompileInputs.cache
+C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev Rework\obj\Debug\cmmm+ Indev.csproj.CoreCompileInputs.cache
 C:\Users\henri\AppData\LocalLow\KaidenHoward\CellMachineIndev\Mods\cmmm+\CMMM+.dll
 C:\Users\henri\AppData\LocalLow\KaidenHoward\CellMachineIndev\Mods\cmmm+\CMMM+.pdb
-C:\Users\henri\Downloads\CMMM+ Indev\obj\Debug\cmmm+ Indev.csproj.CopyComplete
-C:\Users\henri\Downloads\CMMM+ Indev\obj\Debug\CMMM+.dll
-C:\Users\henri\Downloads\CMMM+ Indev\obj\Debug\CMMM+.pdb
+C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev Rework\obj\Debug\cmmm+ Indev.csproj.CopyComplete
+C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev Rework\obj\Debug\CMMM+.dll
+C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev Rework\obj\Debug\CMMM+.pdb
+C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev Rework\obj\Debug\cmmm+ Indev.csproj.AssemblyReference.cache
 C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev\obj\Debug\cmmm+ Indev.csproj.AssemblyReference.cache
 C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev\obj\Debug\cmmm+ Indev.csproj.CoreCompileInputs.cache
+C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev\obj\Debug\cmmm+ Indev.csproj.CopyComplete
 C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev\obj\Debug\CMMM+.dll
 C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev\obj\Debug\CMMM+.pdb
-C:\Users\henri\OneDrive\Documents\GitHub\cmmm-plus-indev\obj\Debug\cmmm+ Indev.csproj.CopyComplete

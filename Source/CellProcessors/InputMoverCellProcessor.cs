@@ -1,17 +1,19 @@
 using Modding;
 using Modding.PublicInterfaces.Cells;
 using System.Threading;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Indev2
 {
-    public class NudgeCellProcessor : SteppedCellProcessor
+    public class InputMoverCellProcessor : SteppedCellProcessor
     {
 
-        public NudgeCellProcessor(ICellGrid cellGrid) : base(cellGrid) { }
+        public InputMoverCellProcessor(ICellGrid cellGrid) : base(cellGrid) { }
 
-        public override string Name => "Nudge";
-        public override int CellType => 12;
-        public override string CellSpriteIndex => "Nudge";
+        public override string Name => "Input Mover";
+        public override int CellType => 46;
+        public override string CellSpriteIndex => "InputMover";
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
         {
@@ -38,15 +40,12 @@ namespace Indev2
             var targetCell = _cellGrid.GetCell(target);
             if (targetCell is null)
             {
-                cell.SpriteVariant = 1;
                 _cellGrid.MoveCell(cell, target);
                 return true;
             }
 
             if (!_cellGrid.PushCell(targetCell.Value, direction, force))
                 return false;
-
-            cell.SpriteVariant = 1;
             _cellGrid.MoveCell(cell, target);
 
             return true;
@@ -55,24 +54,38 @@ namespace Indev2
         {
             return true;
         }
-        public override void OnCellInit(ref BasicCell cell)
-        {
-            cell.SpriteVariant = 0;
-        }
+        public override void OnCellInit(ref BasicCell cell) { }
         public override void Clear() { }
 
         public override void Step(CancellationToken ct)
         {
+            
+            bool leftDown = Input.GetMouseButtonDown(0);
             foreach (var cell in GetOrderedCellEnumerable())
             {
                 if (ct.IsCancellationRequested)
                     return;
-                if (cell.SpriteVariant == 1)
+                BasicCell useCell = cell;
+                if (leftDown)
                 {
-                    _cellGrid.PushCell(cell, cell.Transform.Direction, 0);
+                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    mousePos.z = 0;
+                    if (Vector2.Distance(mousePos, cell.Transform.Position) < 100f)
+                    {
+                        if (useCell.SpriteVariant == 0)
+                        useCell.SpriteVariant = 1;
+                        else
+                        useCell.SpriteVariant = 0;
+                    }
+                    
                 }
-
+                if (useCell.SpriteVariant == 1)
+                {
+                    _cellGrid.PushCell(useCell, cell.Transform.Direction, 0);
+                }
+            
             }
+            
         }
     }
 }

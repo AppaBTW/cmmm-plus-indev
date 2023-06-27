@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "1fqsu6sB8d8aRUaTqyJ1/mxczLXmZMtKBCImRDqaEa2tFEzj3FhE1oE2SOsUjGJ2YkTz94KrumKluFG1FiHTWA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\henri\\OneDrive\\Documents\\GitHub\\Too many varients\\TMV.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\henri\\.nuget\\packages\\indev.net\\9.0.6\\indev.net.9.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}

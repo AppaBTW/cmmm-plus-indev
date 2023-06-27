@@ -4,13 +4,16 @@ using Modding.PublicInterfaces.Cells;
 
 namespace Indev2
 {
-    public abstract class RotatorProcessor : TickedCellStepper
+    public class FixedRotatorCellProcessor : TickedCellStepper
     {
-        public abstract int RotationAmount { get; }
 
-        protected RotatorProcessor(ICellGrid cellGrid) : base(cellGrid)
+        public FixedRotatorCellProcessor(ICellGrid cellGrid) : base(cellGrid)
         {
         }
+
+        public override string Name => "Fixed Rotator Cell";
+        public override int CellType => 13;
+        public override string CellSpriteIndex => "FixedRotator";
 
         public override void Step(CancellationToken ct)
         {
@@ -27,23 +30,12 @@ namespace Indev2
                         continue;
                     if (targetCell.Value.Instance.Type == 20)
                         continue;
-                    /*
-                    if (targetCell.Value.Instance.Type == 26 | targetCell.Value.Instance.Type == 2 | targetCell.Value.Instance.Type == 22 | targetCell.Value.Instance.Type == 23 | targetCell.Value.Instance.Type == 24 | targetCell.Value.Instance.Type == 30 | targetCell.Value.Instance.Type == 32)
-                    {
-                        BasicCell useCell;
-                        useCell = (BasicCell)targetCell;
-                        _cellGrid.RemoveCell(useCell);
-                        useCell.Transform = useCell.Transform.Rotate(RotationAmount);
-                        _cellGrid.AddCell(useCell);
-                        continue;
-                    }
 
-                    _cellGrid.RotateCell(targetCell.Value, targetCell.Value.Transform.Direction.Rotate(RotationAmount));
-                    */
+
                     BasicCell useCell;
                     useCell = (BasicCell)targetCell;
                     _cellGrid.RemoveCell(useCell);
-                    useCell.Transform = useCell.Transform.Rotate(RotationAmount);
+                    useCell.Transform = useCell.Transform.SetDirection(cell.Transform.Direction);
                     _cellGrid.AddCell(useCell);
                     continue;
                 }
@@ -83,6 +75,13 @@ namespace Indev2
 
             _cellGrid.MoveCell(cell, target);
             return true;
+        }
+
+        public override void Clear()
+        {
+        }
+        public override void OnCellInit(ref BasicCell cell)
+        {
         }
     }
 }

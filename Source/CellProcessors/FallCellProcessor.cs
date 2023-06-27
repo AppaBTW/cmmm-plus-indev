@@ -1,28 +1,41 @@
 using System.Threading;
 using Modding;
 using Modding.PublicInterfaces.Cells;
-using UnityEngine;
 
 namespace Indev2
 {
     public class FallCellProcessor : SteppedCellProcessor
     {
-        public FallCellProcessor(ICellGrid cellGrid) : base(cellGrid)
-        {
-        }
+        public FallCellProcessor(ICellGrid cellGrid) : base(cellGrid) { }
 
         public override string Name => "Fall";
-        public override int CellType => 13;
+        public override int CellType => 15;
         public override string CellSpriteIndex => "Fall";
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
         {
+            if (force <= 0)
+                return false;
+
+            var target = cell.Transform.Position + direction.AsVector2Int;
+            if (!_cellGrid.InBounds(target))
+                return false;
+            var targetCell = _cellGrid.GetCell(target);
+
+            if (targetCell is null)
+            {
+                _cellGrid.MoveCell(cell, target);
+                return true;
+            }
+
+            if (!_cellGrid.PushCell(targetCell.Value, direction, force))
+                return false;
+
+            _cellGrid.MoveCell(cell, target);
             return true;
         }
 
-        public override void OnCellInit(ref BasicCell cell)
-        {
-        }
+        public override void OnCellInit(ref BasicCell cell) { }
 
         public override bool OnReplaced(BasicCell basicCell, BasicCell replacingCell)
         {
@@ -35,23 +48,34 @@ namespace Indev2
             {
                 if (ct.IsCancellationRequested)
                     return;
-
                 var targetPos = cell.Transform.Position + cell.Transform.Direction.AsVector2Int;
-                var count = 0;
-                while (_cellGrid.InBounds(targetPos) && _cellGrid.GetCell(targetPos) == null)
-                {
-                    targetPos = cell.Transform.Position + (cell.Transform.Direction.AsVector2Int * count);
-                    count++;
-                }
                 var targetCell = _cellGrid.GetCell(targetPos);
-                if (targetCell != null)
+
+                //  This does all the checks for stuff
+                if (!_cellGrid.InBounds(targetPos))
                     continue;
-                _cellGrid.AddCell(targetPos, cell.Transform.Direction, cell.Instance.Type, cell.Transform);
+
+                check:
+                    {
+                        if (targetCell is null)
+                        {
+                                targetPos += cell.Transform.Direction.AsVector2Int;
+                                targetCell = _cellGrid.GetCell(targetPos);
+                                if (_cellGrid.InBounds(targetPos))
+                                goto check;
+
+
+                        }
+                    }
+                targetPos -= cell.Transform.Direction.AsVector2Int;
+                BasicCell UseCell = cell;
+                UseCell.Transform = UseCell.Transform.SetPosition(targetPos);
+
                 _cellGrid.RemoveCell(cell);
+                _cellGrid.AddCell(UseCell);
             }
         }
-        public override void Clear()
-        {
-        }
+
+        public override void Clear() { }
     }
 }
