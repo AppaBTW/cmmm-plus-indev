@@ -33,6 +33,8 @@ namespace Indev2
                         continue;
                     if (targetCell.Value.Instance.Type == 20)
                         continue;
+                    if (targetCell.Value.Instance.Type == 6)
+                        continue;
                     int rotationAmount = Random.Range(333, 335);
 
                     if (rotationAmount == 333)

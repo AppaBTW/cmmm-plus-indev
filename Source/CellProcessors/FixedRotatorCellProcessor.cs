@@ -30,7 +30,8 @@ namespace Indev2
                         continue;
                     if (targetCell.Value.Instance.Type == 20)
                         continue;
-
+                    if (targetCell.Value.Instance.Type == 6)
+                        continue;
 
                     BasicCell useCell;
                     useCell = (BasicCell)targetCell;
