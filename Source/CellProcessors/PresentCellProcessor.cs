@@ -34,9 +34,6 @@ namespace Indev2
             
             if (force <= 0)
                 return false;
-            _cellGrid.RemoveCell(cell.Transform.Position - direction.AsVector2Int);
-            _cellGrid.RemoveCell(cell);
-            _cellGrid.AddCell(cell.Transform.Position, cell.Transform.Direction, Random.Range(0, 10));
             return true;
 
         }

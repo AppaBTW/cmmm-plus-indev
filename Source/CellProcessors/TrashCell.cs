@@ -22,7 +22,7 @@ namespace Indev2
 
         public override bool TryPush(BasicCell cell, Direction direction, int force)
         {
-            return false;
+            return true;
         }
 
         public override void OnCellInit(ref BasicCell cell)

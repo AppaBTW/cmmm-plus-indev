@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading;
 using Modding;
 using Modding.PublicInterfaces.Cells;
@@ -89,6 +88,8 @@ namespace Indev2
             if (targetCell == null)
                 return;
             if (targetCell.Value.Instance.Type == 20)
+                return;
+            if (targetCell.Value.Instance.Type == 8)
                 return;
 
             BasicCell useCell;

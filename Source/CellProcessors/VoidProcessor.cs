@@ -26,14 +26,18 @@ namespace Indev2
         {
             foreach (var cell in GetOrderedCellEnumerable())
             {
+                if (cell.SpriteVariant == 1)
+                {
+                    continue;
+                }
                 BasicCell useCell = cell;
                 useCell.SpriteVariant = 1;
+                _cellGrid.RemoveCell(cell);
                 _cellGrid.AddCell(useCell);
             }
         }
         public override void OnCellInit(ref BasicCell cell)
         {
-            cell.SpriteVariant = 1;
         }
 
         public override void Clear() { }

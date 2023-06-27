@@ -58,7 +58,7 @@ namespace Indev2
                     continue;
                 if (referenceCell.Value.Instance.Type == 20)
                     continue;
-                if (referenceCell.Value.Instance.Type == 19)
+                if (referenceCell.Value.Instance.Type == 17)
                     continue;
                 if (!_cellGrid.InBounds(targetPos))
                     continue;
@@ -66,16 +66,17 @@ namespace Indev2
                 BasicCell useCell = referenceCell.Value;
                 useCell.Transform = useCell.Transform.SetPosition(targetPos);
                 useCell.Transform = useCell.Transform.SetDirection(referenceCell.Value.Transform.Direction);
+                useCell.SpriteVariant = referenceCell.Value.SpriteVariant;
                 useCell.PreviousTransform = useCell.PreviousTransform.SetPosition(referenceCell.Value.Transform.Position);
                 if (targetCell is not null)
                 {
-                    if (targetCell.Value.Instance.Type == 19)
+                    if (targetCell.Value.Instance.Type == 17)
                     {
                     check:
                         {
                             if (targetCell is not null)
                             {
-                                if (targetCell.Value.Instance.Type == 19 && targetCell.Value.Transform.Direction == cell.Transform.Direction)
+                                if (targetCell.Value.Instance.Type == 17 && targetCell.Value.Transform.Direction == cell.Transform.Direction)
                                 {
                                     targetPos += cell.Transform.Direction.AsVector2Int;
                                     targetCell = _cellGrid.GetCell(targetPos);

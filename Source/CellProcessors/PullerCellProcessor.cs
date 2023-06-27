@@ -77,6 +77,11 @@ namespace Indev2
                     _cellGrid.PushCell(cell, cell.Transform.Direction, 1);
                     continue;
                 }
+                else if (targetCell.Value.Instance.Type == 20)
+                {
+                    _cellGrid.PushCell(cell, cell.Transform.Direction, 1);
+                    continue;
+                }
 
                 if (targetCell.Value.Instance.Type == 8 | targetCell.Value.Instance.Type == 7 | targetCell.Value.Instance.Type == 19)
                 {
