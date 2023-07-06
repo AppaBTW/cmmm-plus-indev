@@ -8,7 +8,7 @@ namespace Indev2
     {
         public override string Name => "One Directional Cell";
         public override int CellType => 16;
-        public override string CellSpriteIndex => "OneDirectional";
+        public override string CellSpriteIndex => "Directional";
 
 
         public OneDirectionalCellProcessor(ICellGrid cellGrid) : base(cellGrid)
